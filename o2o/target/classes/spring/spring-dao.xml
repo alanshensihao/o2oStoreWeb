@@ -7,7 +7,7 @@
     http://www.springframework.org/schema/context/spring-context.xsd">
 	<!-- configure and integrate mybatis progress -->
 	<!-- 1. configure database parameters：${url}, classpath = src/main/resources -->
-    <context:property-placeholder location="classpath:jdbc.properties"/>>
+    <context:property-placeholder location="classpath:jdbc.properties"/>
 
 	<!-- 2.database connection pool -->
 	<bean id="dataSource" class="com.mchange.v2.c3p0.ComboPooledDataSource">
@@ -40,11 +40,11 @@
 		<property name="mapperLocations" value="classpath:mapper/*.xml" />
 	</bean>
 
-	<!-- 4.配置扫描Dao接口包，动态实现Dao接口，注入到spring容器中 -->
+	<!-- 4.configure DAO interface package, dynamic interface, feed into spring container -->
 	<bean class="org.mybatis.spring.mapper.MapperScannerConfigurer">
-		<!-- 注入sqlSessionFactory -->
+		<!-- insert sqlSessionFactory -->
 		<property name="sqlSessionFactoryBeanName" value="sqlSessionFactory" />
-		<!-- 给出需要扫描Dao接口包 -->
+		<!-- provide Dao package-->
 		<property name="basePackage" value="com.imooc.o2o.dao" />
 	</bean>
 </beans>
