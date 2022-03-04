@@ -131,3 +131,12 @@ CREATE TABLE `tb_product` (
     CONSTRAINT `fk_product_shop` FOREIGN KEY (`shop_id`) REFERENCES `tb_shop`(`shop_id`)
 ) ENGINE = InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET = utf8;
 
+use o2o;
+
+INSERT INTO `tb_area` VALUES(1,"east end",1,NULL,NULL);
+INSERT INTO `tb_area` VALUES(2,"west end",2,NULL,NULL);
+INSERT INTO `tb_area` VALUES(3,"north end",3,NULL,NULL);
+
+SELECT area_id,area_name,priority,create_time,last_edit_time
+FROM tb_area 
+ORDER BY priority DESC;

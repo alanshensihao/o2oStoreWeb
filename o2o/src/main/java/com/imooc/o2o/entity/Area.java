@@ -11,8 +11,6 @@ public class Area {
     private Date createTime;
     private Date lastEditTime;
 
-
-
     /**
      * @return Integer return the areaId
      */
