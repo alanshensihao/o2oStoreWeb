@@ -27,5 +27,5 @@
     </bean>
 
     <!-- 4. scan web bean -->
-    <context:component-scan base-package="com.immoc.web"/>
+    <context:component-scan base-package="com.imooc.web"/>
 </beans>
