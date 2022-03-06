@@ -17,8 +17,8 @@ import org.springframework.web.bind.annotation.ResponseBody;
 @Controller
 @RequestMapping("/superadmin")
 public class AreaController {
-    @Autowired
     // when areaService used, inject areaService impl
+    @Autowired
     private AreaService areaService;
 
     // post vs get
