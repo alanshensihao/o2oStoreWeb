@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:context="http://www.springframework.org/schema/context"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans
+    http://www.springframework.org/schema/beans/spring-beans.xsd
+    http://www.springframework.org/schema/context
+    http://www.springframework.org/schema/context/spring-context.xsd">
+	<!-- configure and integrate mybatis progress -->
+	<!-- 1. configure database parameters：${url}, classpath = src/main/resources -->
+    <context:property-placeholder location="classpath:jdbc.properties"/>
+
+	<!-- 2.database connection pool -->
+	<bean id="dataSource" class="com.mchange.v2.c3p0.ComboPooledDataSource">
+        <!-- config connection properties -->
+        <property name="driverClass" value="${jdbc.driver}" />
+        <property name="jdbcUrl" value="${jdbc.url}" />
+        <property name="user" value="${jdbc.username}" />
+        <property name="password" value="${jdbc.password}" />
+		<!-- c3p0 properties -->
+		<property name="maxPoolSize" value="30" />
+		<property name="minPoolSize" value="10" />
+	
+		<!-- turn off auto commit on close -->
+		<property name="autoCommitOnClose" value="false" />
+		<!-- timeout set 10000ms -->
+		<property name="checkoutTimeout" value="10000" />
+		<!-- reconnection times -->
+		<property name="acquireRetryAttempts" value="2" />
+	</bean>
+
+	<!-- 3.configure SqlSessionFactory objects -->
+	<bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
+		<!-- send to database pool -->
+		<property name="dataSource" ref="dataSource" />
+		<!-- configure MyBaties global config files:mybatis-config.xml -->
+		<property name="configLocation" value="classpath:mybatis-config.xml" />
+		<!-- scan entity package -->
+		<property name="typeAliasesPackage" value="com.imooc.entity" />
+		<!-- scan sql config files: xml files for mapper -->
+		<property name="mapperLocations" value="classpath:mapper/*.xml" />
+	</bean>
+
+	<!-- 4.configure DAO interface package, dynamic interface, feed into spring container -->
+	<bean class="org.mybatis.spring.mapper.MapperScannerConfigurer">
+		<!-- insert sqlSessionFactory -->
+		<property name="sqlSessionFactoryBeanName" value="sqlSessionFactory" />
+		<!-- provide Dao package-->
+		<property name="basePackage" value="com.imooc.o2o.dao" />
+	</bean>
+</beans>

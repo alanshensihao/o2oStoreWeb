@@ -1,0 +1,3 @@
+2022-03-13 09:25:43.627 [main] DEBUG com.imooc.o2o.dao.ShopDao.insertShop - ==>  Preparing: INSERT INTO tb_shop(owner_id, area_id, shop_category_id, shop_name, shop_desc, shop_addr, phone, shop_img, priority, create_time, last_edit_time, enable_status,advice) VALUES (?,?,?, ?,?,?,?,?, ?,?,?,?,?) 
+2022-03-13 09:25:43.679 [main] DEBUG com.imooc.o2o.dao.ShopDao.insertShop - ==> Parameters: 1(Long), 2(Integer), 1(Long), test(String), test(String), null, test(String), test(String), null, 2022-03-13 09:25:43.244(Timestamp), null, 1(Integer), under review(String)
+2022-03-13 09:25:43.688 [main] DEBUG com.imooc.o2o.dao.ShopDao.insertShop - <==    Updates: 1
