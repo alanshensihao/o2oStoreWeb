@@ -8,6 +8,8 @@ import java.util.Random;
 
 import javax.imageio.ImageIO;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.web.multipart.commons.CommonsMultipartFile;
 
 import net.coobird.thumbnailator.Thumbnails;
@@ -24,7 +26,36 @@ public class ImageUtil {
     // set random number
     private static final Random r = new Random();
 
-    public static String generateThumbnail(CommonsMultipartFile thumbnail, String targetAddr) {
+    // logger
+    private static Logger logger = LoggerFactory.getLogger(ImageUtil.class);
+
+
+    /**
+     * convert commonsultipartfile to java file!!
+     * @param cFile
+     * @return File
+     */
+    public static File transferCommonsMultipartFileToFile(CommonsMultipartFile cFile) {
+        File newFile = new File(cFile.getOriginalFilename());
+        try {
+            cFile.transferTo(newFile);
+        } catch (IllegalStateException e) {
+            logger.error(e.toString());
+            e.printStackTrace();
+        } catch (IOException e) {
+            logger.error(e.toString());
+            e.printStackTrace();
+        }
+        return newFile;
+    }
+
+    /**
+     * process compressed pic, and return new relative path of the pic
+     * @param thumbnail
+     * @param targetAddr
+     * @return
+     */
+    public static String generateThumbnail(File thumbnail, String targetAddr) {
 
         // retrieve file from each addr and name
         // target file name
@@ -33,16 +64,33 @@ public class ImageUtil {
         String extension = getFileExtension(thumbnail);
         // target address
         makeDirPath(targetAddr);
-        String relativeAddr = targetAddr + readFileName + extension;
-        File dest = new File(PathUtil.getImageBasePath() + relativeAddr);
+        String relativeAddr = targetAddr + realFileName + extension;
+
+        logger.debug("current relativeAddr is: " + relativeAddr);
+        File dest = new File(PathUtil.getImgBasePath() + relativeAddr);
+        logger.debug("current complete addr is: " + PathUtil.getImgBasePath() + relativeAddr);
 
         try {
-            Thumbnails.of(thumbnail.getInputStream()).size(200,200)
+            Thumbnails.of(thumbnail).size(200,200)
             .watermark(Positions.BOTTOM_RIGHT, ImageIO.read(new File(basePath + "/watermark.jpg")), 0.25f)
             .outputQuality(0.8f).toFile(dest);
         } catch (IOException e) {
+            logger.error(e.toString());
             e.printStackTrace();
         }
+
+        // return relative image addr and saved to sql
+        return relativeAddr;
+    }
+
+    /**
+     * retrieve file stream extension 
+     * @param thumbnail
+     * @return
+     */
+    private static String getFileExtension(File thumbnail) {
+        String originalFileName = thumbnail.getName();
+        return originalFileName.substring(originalFileName.lastIndexOf("."));
     }
 
     /**
@@ -56,6 +104,20 @@ public class ImageUtil {
         String nowTimeStr = sDateFormat.format(new Date());
 
         return nowTimeStr + rannum;
+    }
+
+    /**
+     * generate target addr
+     * example: /home/work/alan/xxx.jpg
+     * make it as the current path
+     * @param targetAddr
+     */
+    private static void makeDirPath(String targetAddr) {
+        String realFileParentPath = PathUtil.getImgBasePath() + targetAddr;
+        File dirPath = new File(realFileParentPath);
+        if(!dirPath.exists()) {
+            dirPath.mkdirs();
+        }
     }
 
 

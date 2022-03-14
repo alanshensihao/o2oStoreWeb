@@ -13,9 +13,9 @@ public class PathUtil {
         } else {
             basePath = "/home/alan/image/";
         }
-        
+
         basePath = basePath.replace("/", separator);
-        return basePath
+        return basePath;
     }
 
     public static String getShopImagePath(long shopId) {
