@@ -10,6 +10,7 @@ import com.imooc.o2o.entity.PersonInfo;
 import com.imooc.o2o.entity.Shop;
 import com.imooc.o2o.entity.ShopCategory;
 
+import org.junit.Ignore;
 import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 
@@ -19,6 +20,7 @@ public class ShopDaoTest extends BaseTest{
     private ShopDao shopDao;
     
     @Test
+    @Ignore
     public void testInsertShop() {
         Shop shop = new Shop();
         PersonInfo owner = new PersonInfo();
@@ -32,7 +34,6 @@ public class ShopDaoTest extends BaseTest{
         owner.setUserId(1L);
         area.setAreaId(2);
 
-
         shop.setShopName("test");
         shop.setShopDesc("test");
         shop.setPhone("test");
@@ -44,6 +45,17 @@ public class ShopDaoTest extends BaseTest{
         System.out.println(shop.getShopCategory().getShopCategoryId());
         // retrieve effect number of rows
         int effectNum = shopDao.insertShop(shop);
+        assertEquals(1,effectNum);
+    }
+    @Test
+    public void testUpdateShop() {
+        Shop shop = new Shop();
+        shop.setShopId(36L);
+        shop.setShopDesc("test updated");
+        shop.setShopAddr("test updated");
+        shop.setLastEditTime(new Date());
+        
+        int effectNum = shopDao.updateShop(shop);
         assertEquals(1,effectNum);
     }
 }

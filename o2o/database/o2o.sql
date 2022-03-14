@@ -92,7 +92,7 @@ CREATE TABLE `tb_shop` (
     CONSTRAINT `fk_shop_area` FOREIGN KEY (`area_id`) REFERENCES `tb_area`(`area_id`),
     CONSTRAINT `fk_shop_profile` FOREIGN KEY(`owner_id`) REFERENCES `tb_person_info`(`user_id`),
     CONSTRAINT `fk_shop_shopcate` FOREIGN KEY(`shop_category_id`) REFERENCES `tb_shop_category`(`shop_category_id`)
-) ENGINE = InnoDB AUTO_INCREMENT=36 DEFAULT CHARSET=utf8;
+) ENGINE = InnoDB AUTO_INCREMENT= 1 DEFAULT CHARSET=utf8;
 
 SELECT *
 from `tb_shop`;
