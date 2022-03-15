@@ -1,0 +1,3 @@
+2022-03-14 22:28:53.858 [main] ERROR com.imooc.o2o.util.ImageUtil - javax.imageio.IIOException: Can't read input file!
+2022-03-14 22:35:13.522 [main] ERROR com.imooc.o2o.util.ImageUtil - javax.imageio.IIOException: Can't read input file!
+2022-03-14 22:36:22.755 [main] ERROR com.imooc.o2o.util.ImageUtil - javax.imageio.IIOException: Can't read input file!

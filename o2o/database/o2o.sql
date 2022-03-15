@@ -166,6 +166,8 @@ INSERT INTO `tb_person_info` VALUES(NULL,"test2",NULL,"test",0,1,2,NULL,NULL);
 INSERT INTO `tb_shop_category` VALUES(1,"chatime","coffe/tea","test",1,NULL,NULL,NULL);
 INSERT INTO `tb_shop` VALUES(1,1,1,1,"test","test","test","test","test",0, curdate(),curdate(),1,"test");
 
+use o2o;
+
 SELECT *
 FROM tb_area;
 

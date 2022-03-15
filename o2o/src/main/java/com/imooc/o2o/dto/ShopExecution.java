@@ -45,6 +45,14 @@ public class ShopExecution {
         this.shopList = shopList;
     }
 
+
+    /**
+     * 
+     * @param state
+     */
+    public int getState() {
+        return state;
+    }
     /**
      * @param state the state to set
      */
