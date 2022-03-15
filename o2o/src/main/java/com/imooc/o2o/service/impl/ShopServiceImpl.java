@@ -38,6 +38,8 @@ public class ShopServiceImpl implements ShopService {
             shop.setLastEditTime(new Date());
             // add shop info
             int effectedNum = shopDao.insertShop(shop);
+            // runtime exception test
+            // throw new ShopOperationException("shop creation failed");
             if(effectedNum <= 0) {
                 // rollback
                 throw new ShopOperationException("shop creation failed");

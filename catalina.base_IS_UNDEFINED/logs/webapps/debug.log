@@ -30,3 +30,6 @@
 2022-03-14 22:39:35.379 [main] DEBUG com.imooc.o2o.dao.ShopDao.updateShop - ==>  Preparing: update tb_shop SET shop_name=?, shop_desc=?, phone=?, shop_Img=?, last_edit_time=?, enable_status=?, advice=?, shop_category_id = ? where shop_id = ? 
 2022-03-14 22:39:35.380 [main] DEBUG com.imooc.o2o.dao.ShopDao.updateShop - ==> Parameters: service test(String), service test(String), service test(String), \upload\item\shop\40\2022031422393574418.jpg(String), 2022-03-14 22:39:35.095(Timestamp), 0(Integer), under review(String), 1(Long), 40(Long)
 2022-03-14 22:39:35.382 [main] DEBUG com.imooc.o2o.dao.ShopDao.updateShop - <==    Updates: 1
+2022-03-14 22:44:58.680 [main] DEBUG com.imooc.o2o.dao.ShopDao.insertShop - ==>  Preparing: INSERT INTO tb_shop(owner_id, area_id, shop_category_id, shop_name, shop_desc, shop_addr, phone, shop_img, priority, create_time, last_edit_time, enable_status,advice) VALUES (?,?,?, ?,?,?,?,?, ?,?,?,?,?) 
+2022-03-14 22:44:58.732 [main] DEBUG com.imooc.o2o.dao.ShopDao.insertShop - ==> Parameters: 1(Long), 2(Integer), 1(Long), service test2(String), service test(String), null, service test(String), null, null, 2022-03-14 22:44:58.653(Timestamp), 2022-03-14 22:44:58.653(Timestamp), 0(Integer), under review(String)
+2022-03-14 22:44:58.745 [main] DEBUG com.imooc.o2o.dao.ShopDao.insertShop - <==    Updates: 1
