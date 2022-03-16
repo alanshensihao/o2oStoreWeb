@@ -61,6 +61,14 @@ public class ShopExecution {
     }
 
     /**
+     * 
+     * @return stateInfo
+     */
+    public String getStateInfo() {
+        return stateInfo;
+    }
+
+    /**
      * @param stateInfo the stateInfo to set
      */
     public void setStateInfo(String stateInfo) {

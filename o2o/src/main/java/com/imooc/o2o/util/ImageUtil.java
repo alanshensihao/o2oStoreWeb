@@ -97,7 +97,7 @@ public class ImageUtil {
      * generate random file name, based on current date time + 5 random num
      * @return
      */
-    private static String getRandomFileName() {
+    public static String getRandomFileName() {
         // get a random 5 digit num
         // 0 - 99999
         int rannum = r.nextInt(89999) + 10000;
